@@ -15,7 +15,7 @@
 - `ffprobe` (通过 ffmpeg 提供)
 - `curl`
 
-## CLI 安装
+## 安装
 
 1. 克隆项目：
 ```bash
@@ -23,34 +23,40 @@ git clone <repository-url> ~/Github/whatcodec
 cd ~/Github/whatcodec
 ```
 
-2. 运行安装脚本（仅安装命令行工具）：
+2. 运行安装脚本：
+
+**选项 A：安装 macOS App（推荐）**
+默认情况下，脚本会自动构建并将 App 安装到 `~/Applications/WhatCodec.app`。
 ```bash
 ./install.sh
 ```
+*需要系统中安装 [Platypus](https://sveinbjorn.org/platypus) 应用。*
 
-3. 重新加载shell配置：
+**选项 B：仅安装命令行工具 (CLI)**
+如果你只想要终端命令 `whatcodec`：
 ```bash
+./install.sh --cli
 source ~/.zshrc
 ```
 
-## 构建 macOS App
+## macOS App 使用方法
 
-如果你希望获得通过拖拽文件使用的图形界面 App，可以使用 [Platypus](https://sveinbjorn.org/platypus) 进行封装。
+安装完成后，你可以在 Launchpad 或 `~/Applications` 中找到 **WhatCodec**。
 
-**配置步骤：**
+- **拖拽分析**：直接将视频文件拖拽到 App 图标上。
+- **双击运行**：双击打开 App，在弹出的文件选择窗口中选取视频文件。
+- **结果显示**：分析结果将显示在弹出的文本窗口中。
 
-1. 确保已安装 Platypus。
-2. 使用项目中的 `whatcodec_gui.sh` 作为 **Script Path**。
-   - *注意：必须使用 `whatcodec_gui.sh` 而不是 `whatcodec`，前者包含了 GUI 环境下必要的环境变量修复和文件选择弹窗逻辑。*
-3. 设置 **Interface** 为 **Text Window**。
-4. **必须勾选** **Accept dropped items**。
-5. 参考下图进行配置：
+### 手动构建 App
 
-![Platypus Configuration](build_guide/via_platypus.jpg)
+如果你想手动构建或查看构建脚本，可以使用根目录下的 `build_app.sh`：
+```bash
+./build_app.sh
+```
+生成的 App 将位于 `build/WhatCodec.app`。
+此脚本会自动调用 Platypus 命令行工具（支持自动识别 App 包内 CLI），无需繁琐的手动配置。
 
-构建完成后，你可以直接将视频文件 **拖拽** 到 App 图标上，或者 **双击** App 在弹窗中选择文件进行分析。
-
-## 使用方法
+## 命令行 (CLI) 使用方法
 
 ### 基本用法
 
